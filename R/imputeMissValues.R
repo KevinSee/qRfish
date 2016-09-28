@@ -47,7 +47,7 @@ imputeMissValues = function(data = NULL,
   imputed_df = data %>%
     select(response) %>%
     bind_cols(imputed_values$ximp) %>%
-    select(matches(response), covariates)
+    select(matches(response), one_of(covariates))
 
   return(imputed_df)
 }
