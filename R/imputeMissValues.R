@@ -37,7 +37,6 @@ imputeMissValues = function(data = NULL,
     select(-n_miss)
 
   # imputed missing values with missForest package
-  set.seed(5)
   imputed_values = data %>%
     select(one_of(covariates, imputation_metrics)) %>%
     as.data.frame() %>%
