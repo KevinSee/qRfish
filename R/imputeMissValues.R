@@ -45,9 +45,10 @@ imputeMissValues = function(data = NULL,
 
   # put together the new data set with no missing values
   imputed_df = data %>%
-    select(response) %>%
+    select(matches(response)) %>%
     bind_cols(imputed_values$ximp) %>%
-    select(matches(response), one_of(covariates))
+    select(matches(response), one_of(covariates)) %>%
+    tbl_df()
 
   return(imputed_df)
 }
