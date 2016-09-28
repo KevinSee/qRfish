@@ -12,5 +12,6 @@ Imports:
   magrittr(>= 1.5),
   tidyr(>= 0.2.0),
   dplyr(>= 0.4.1),
-  plyr(>= 1.8.4)
+  plyr(>= 1.8.4),
+  missForest(>= 1.4)
 RoxygenNote: 5.0.1

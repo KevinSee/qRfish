@@ -13,7 +13,7 @@
 #' @import missForest magrittr dplyr
 #' @export
 #' @return data.frame with response vector in first column and covariates in subsequent columns.
-
+#' @examples imputeMissValues(data = mod_data, covariates = hab_mets, imputation_metrics = impute_mets, response = 'chnk_per_m')
 
 imputeMissValues = function(data = NULL,
                             covariates = NULL,

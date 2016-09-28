@@ -24,6 +24,9 @@ data.frame with response vector in first column and covariates in subsequent col
 \description{
 filter rows with too many missing values, and imputes the remaining missing values.
 }
+\examples{
+imputeMissValues(data = mod_data, covariates = hab_mets, imputation_metrics = impute_mets, response = 'chnk_per_m')
+}
 \author{
 Kevin See
 }
