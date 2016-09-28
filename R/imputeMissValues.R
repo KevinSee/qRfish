@@ -20,6 +20,10 @@ imputeMissValues = function(data = NULL,
                             imputation_metrics = NULL,
                             max_miss = 3,
                             response = NA) {
+  if(is.null(data)) {
+    cat('data must be supplied')
+    return(NULL)
+  }
 
   # how much missing data?
   data$n_miss = data %>%
@@ -43,7 +47,7 @@ imputeMissValues = function(data = NULL,
   imputed_df = data %>%
     select(response) %>%
     bind_cols(imputed_values$ximp) %>%
-    select(response, covariates)
+    select(matches(response), covariates)
 
   return(imputed_df)
 }
