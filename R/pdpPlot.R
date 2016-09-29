@@ -44,7 +44,7 @@ pdpPlot = function(data = NULL,
 
   pdp_df = ldply(pdp_list) %>% tbl_df
 
-  quant_preds = predict(mod, newdata = select(pdp_df, one_of(hab_mets)), quantile = quantiles) %>%
+  quant_preds = predict(mod, newdata = select(pdp_df, one_of(hab_mets)), what = quantiles) %>%
     as.data.frame() %>%
     tbl_df()
   names(quant_preds) = paste0('quantile_', quantiles*100)
