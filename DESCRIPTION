@@ -10,7 +10,7 @@ LazyData: TRUE
 Imports:
   lubridate(>= 1.3.3),
   missForest(>= 1.4),
-  quantregForest(>= 0.2.3),
+  quantregForest(>= 1.3-5),
   magrittr(>= 1.5),
   tidyr(>= 0.2.0),
   plyr(>= 1.8.4),

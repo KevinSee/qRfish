@@ -4,11 +4,13 @@
 \alias{relImpPlot}
 \title{Plot relative importance of covariates}
 \usage{
-relImpPlot(qrf_mod, fill = "gray40", title = "Relative Importance",
+relImpPlot(mod, covar_dict, fill = "gray40", title = "Relative Importance",
   relImp_var = c("relImp", "IncNodePurity"))
 }
 \arguments{
-\item{qrf_mod}{object of class \code{quantregForest} returned by the function \code{quantregForest}}
+\item{mod}{object of class \code{quantregForest} returned by the function \code{quantregForest}}
+
+\item{covar_dict}{\code{data.frame} containing columns called ShortName and Name. ShortName corresponds to the covariates that went into the \code{mod}, while Name is a longer version for plotting purposes.}
 }
 \description{
 plot the relative importance of each covariate in a quantile regression forest model
