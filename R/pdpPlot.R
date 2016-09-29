@@ -11,7 +11,7 @@
 #'
 #' @author Kevin See
 #'
-#' @import tidyr magrittr plyr dplyr ggplot2
+#' @import tidyr magrittr dplyr ggplot2
 #' @export
 #' @return NULL
 #' @examples
