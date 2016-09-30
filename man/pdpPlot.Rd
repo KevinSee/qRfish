@@ -5,7 +5,7 @@
 \title{Partial Dependence Plots}
 \usage{
 pdpPlot(data = NULL, mod = NULL, covariates = NULL, plot_covars = NULL,
-  quantiles = c(0.9), n_pts = 200)
+  covar_dict = NULL, quantiles = c(0.9), n_pts = 200, same_y_scale = F)
 }
 \arguments{
 \item{data}{\code{data.frame} that was used to fit the \code{mod}}
@@ -16,12 +16,19 @@ pdpPlot(data = NULL, mod = NULL, covariates = NULL, plot_covars = NULL,
 
 \item{plot_covars}{which covariates should be included in final plot}
 
+\item{covar_dict}{\code{data.frame} containing columns called ShortName and Name. ShortName corresponds to the covariates that went into the \code{mod}, while Name is a longer version for plotting purposes.}
+
 \item{quantiles}{which quantiles should be included on the partial dependence plots}
 
 \item{n_pts}{how many points to make predictions for}
+
+\item{same_y_scale}{should plots of different covariates be on the same y-axis scale? Default is \code{FALSE}.}
 }
 \description{
 plot the marginal effect of each covariate on the response at the selected quantiles
+}
+\examples{
+pdpPlot(data = mod_data, mod = qrf_mod, covariates = hab_mets, covar_dict = hab_dict)
 }
 \author{
 Kevin See

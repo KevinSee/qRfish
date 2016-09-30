@@ -14,5 +14,7 @@ Imports:
   magrittr(>= 1.5),
   tidyr(>= 0.2.0),
   dplyr(>= 0.4.1),
-  ggplot2(>= 2.1.0)
+  ggplot2(>= 2.1.0),
+  readr(>= 0.1.0),
+  minerva(>= 1.4.5)
 RoxygenNote: 5.0.1
