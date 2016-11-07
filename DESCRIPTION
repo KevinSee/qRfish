@@ -3,7 +3,7 @@ Type: Package
 Title: Estimate carrying capacity with quantile regression forests
 Version: 0.1.0
 Author: Kevin See <Kevin@qcinc.org> and Mike Ackerman <mackerman@qcinc.org>
-Maintainer: Chris Beasley <chris@qcinc.org>
+Maintainer: Kevin See <Kevin@qcinc.org>
 Description: Use fish and habitat data to estimate carrying capacity.
 License: GPL-2
 LazyData: TRUE

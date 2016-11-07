@@ -25,6 +25,8 @@ imputeMissValues = function(data = NULL,
     return(NULL)
   }
 
+  if(is.null(imputation_metrics)) imputation_metrics = covariates[1]
+
   # how much missing data?
   data$n_miss = data %>%
     select(one_of(covariates)) %>%
@@ -38,7 +40,7 @@ imputeMissValues = function(data = NULL,
 
   # imputed missing values with missForest package
   imputed_values = data %>%
-    select(one_of(covariates, imputation_metrics)) %>%
+    select(one_of(covariates), one_of(imputation_metrics)) %>%
     as.data.frame() %>%
     missForest(variablewise = T, verbose = T)
 

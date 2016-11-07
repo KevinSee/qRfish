@@ -21,7 +21,18 @@ runMINE(data = NULL, covariates = NULL, response = NULL,
 \description{
 Calculates the maximal information criteria for all pairwise groups of the response metric and covariates.
 }
+\examples{
+mine_df = all_data_clean \%>\%
+filter(chnk_per_m > 0) \%>\%
+  select(chnk_per_m,
+         one_of(as.character(hab_dict$ShortName[hab_dict$ShortName \%in\% names(all_data_clean)]))) \%>\%
+  select(-one_of(as.character(hab_dict$ShortName[hab_dict$MetricCategory == 'Categorical'])))
+runMINE(mine_df, names(mine_df)[-1], names(mine_df)[1], hab_dict)
+}
 \author{
 Kevin See
+}
+\references{
+Reshef, D. N., Y. A. Reshef, H. K. Finucane, S. R. Grossman, G. McVean, P. J. Turnbaugh, E. S. Lander, M. Mitzenmacher, and P. C. Sabeti (2011). Detecting novel associations in large data sets. Science, 334(6062):1518–1524.
 }
 

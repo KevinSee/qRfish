@@ -1,4 +1,4 @@
-#' @title QRF Variable Selection
+#' @title QRF Variable Selection - MINE
 #'
 #' @description Calculates the maximal information criteria for all pairwise groups of the response metric and covariates.
 #'
@@ -10,17 +10,25 @@
 #'
 #' @author Kevin See
 #'
+#' @references Reshef, D. N., Y. A. Reshef, H. K. Finucane, S. R. Grossman, G. McVean, P. J. Turnbaugh, E. S. Lander, M. Mitzenmacher, and P. C. Sabeti (2011). Detecting novel associations in large data sets. Science, 334(6062):1518–1524.
 #' @import tidyr dplyr minerva readr
 #' @importFrom plyr ldply
 #' @export
 #' @return NULL
-#' @examples
+#' @examples varSelect_df = all_data_clean %>%
+#' filter(chnk_per_m > 0) %>%
+#'   select(chnk_per_m,
+#'          one_of(as.character(hab_dict$ShortName[hab_dict$ShortName %in% names(all_data_clean)]))) %>%
+#'   select(-one_of(as.character(hab_dict$ShortName[hab_dict$MetricCategory == 'Categorical'])))
+#' runMINE(varSelect_df, names(varSelect_df)[-1], names(varSelect_df)[1], hab_dict)
 
 runMINE = function(data = NULL,
                    covariates = NULL,
                    response = NULL,
                    covar_dict = NULL,
                    save_csv_file = F) {
+
+  if(class(data) != 'data.frame') data = as.data.frame(data)
 
   mine_res_list = vector('list', length(covariates))
   names(mine_res_list) = covariates
