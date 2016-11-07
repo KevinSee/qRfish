@@ -2,7 +2,7 @@
 % Please edit documentation in R/runMine.R
 \name{runMINE}
 \alias{runMINE}
-\title{QRF Variable Selection}
+\title{QRF Variable Selection - MINE}
 \usage{
 runMINE(data = NULL, covariates = NULL, response = NULL,
   covar_dict = NULL, save_csv_file = F)
@@ -22,12 +22,12 @@ runMINE(data = NULL, covariates = NULL, response = NULL,
 Calculates the maximal information criteria for all pairwise groups of the response metric and covariates.
 }
 \examples{
-mine_df = all_data_clean \%>\%
+varSelect_df = all_data_clean \%>\%
 filter(chnk_per_m > 0) \%>\%
   select(chnk_per_m,
          one_of(as.character(hab_dict$ShortName[hab_dict$ShortName \%in\% names(all_data_clean)]))) \%>\%
   select(-one_of(as.character(hab_dict$ShortName[hab_dict$MetricCategory == 'Categorical'])))
-runMINE(mine_df, names(mine_df)[-1], names(mine_df)[1], hab_dict)
+runMINE(varSelect_df, names(varSelect_df)[-1], names(varSelect_df)[1], hab_dict)
 }
 \author{
 Kevin See
