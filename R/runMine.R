@@ -11,7 +11,7 @@
 #' @author Kevin See
 #'
 #' @references Reshef, D. N., Y. A. Reshef, H. K. Finucane, S. R. Grossman, G. McVean, P. J. Turnbaugh, E. S. Lander, M. Mitzenmacher, and P. C. Sabeti (2011). Detecting novel associations in large data sets. Science, 334(6062):1518–1524.
-#' @import tidyr dplyr minerva readr
+#' @import readr tidyr dplyr minerva
 #' @importFrom plyr ldply
 #' @export
 #' @return NULL
@@ -41,16 +41,16 @@ runMINE = function(data = NULL,
 
   mine_res = ldply(mine_res_list, .id = 'variable') %>% tbl_df %>%
     left_join(data %>%
-                select(one_of(covariates)) %>%
+                dplyr::select(one_of(covariates)) %>%
                 gather(variable, value) %>%
                 group_by(variable) %>%
                 summarise(non_NA = sum(!is.na(value)),
                           is_NA = sum(is.na(value)),
                           perc_NA = round(is_NA / (is_NA + non_NA), 3),
                           non_0 = sum(value != 0, na.rm = T)) %>%
-                left_join(select(covar_dict, variable = ShortName, MetricCategory))) %>%
-    select(MetricCategory, variable, non_NA:non_0, everything()) %>%
-    arrange(MetricCategory, desc(MIC))
+                left_join(dplyr::select(covar_dict, variable = ShortName, MetricCategory))) %>%
+    dplyr::select(MetricCategory, variable, non_NA:non_0, everything()) %>%
+    dplyr::arrange(MetricCategory, desc(MIC))
 
   if(save_csv_file) {
     write_csv(mine_res,
