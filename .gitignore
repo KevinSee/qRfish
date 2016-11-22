@@ -3,3 +3,5 @@
 .RData
 .Ruserdata
 Example.R
+R/rfVarSelect.R
+man/rfVarSelect.Rd
