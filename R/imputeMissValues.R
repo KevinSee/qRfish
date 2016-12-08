@@ -45,11 +45,19 @@ imputeMissValues = function(data = NULL,
     missForest(variablewise = T, verbose = T)
 
   # put together the new data set with no missing values
-  imputed_df = data %>%
-    select(matches(response)) %>%
-    bind_cols(imputed_values$ximp) %>%
-    select(matches(response), one_of(covariates)) %>%
-    tbl_df()
+  if(!is.na(response)) {
+    imputed_df = data %>%
+      select(matches(response)) %>%
+      bind_cols(imputed_values$ximp) %>%
+      select(matches(response), one_of(covariates)) %>%
+      tbl_df()
+  }
+
+  if(is.na(response)) {
+    imputed_df = imputed_values$ximp %>%
+      select(one_of(covariates)) %>%
+      tbl_df()
+  }
 
   return(imputed_df)
 }
