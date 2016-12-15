@@ -37,7 +37,7 @@ runMINE = function(data = NULL,
                    y = data[,match(response, names(data))],
                    use = 'pairwise.complete.obs') %>%
                 unlist())
-    if(class(tmp) == 'try_error') mine_res_list[[i]] = NULL
+    if(class(tmp) == 'try_error') mine_res_list[[i]] = rep(NA, 7)
     else mine_res_list[[i]] = tmp
   }
 
