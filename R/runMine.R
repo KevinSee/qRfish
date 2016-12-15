@@ -33,10 +33,12 @@ runMINE = function(data = NULL,
   mine_res_list = vector('list', length(covariates))
   names(mine_res_list) = covariates
   for(i in 1:length(covariates)) {
-    mine_res_list[[i]] = mine(x = data[,match(covariates[i], names(data))],
-                                  y = data[,match(response, names(data))],
-                                  use = 'pairwise.complete.obs') %>%
-      unlist()
+    tmp = try(mine(x = data[,match(covariates[i], names(data))],
+                   y = data[,match(response, names(data))],
+                   use = 'pairwise.complete.obs') %>%
+                unlist())
+    if(class(tmp) == 'try_error') mine_res_list[[i]] = NULL
+    else mine_res_list[[i]] = tmp
   }
 
   mine_res = ldply(mine_res_list, .id = 'variable') %>% tbl_df %>%
