@@ -42,7 +42,8 @@ imputeMissValues = function(data = NULL,
   imputed_values = data %>%
     select(one_of(covariates), one_of(imputation_metrics)) %>%
     as.data.frame() %>%
-    missForest(variablewise = T, verbose = T)
+    missForest(variablewise = T,
+               verbose = F)
 
   # put together the new data set with no missing values
   if(!is.na(response)) {
