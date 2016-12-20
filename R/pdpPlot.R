@@ -26,13 +26,15 @@ pdpPlot = function(data = NULL,
                    covar_dict = NULL,
                    quantiles = c(0.9),
                    n_pts = 200,
-                   same_y_scale = F) {
+                   same_y_scale = F,
+                   ylab = 'Prediction (fish / m)') {
 
   if(is.null(plot_covars)) plot_covars = covariates
 
   # get means and ranges of all covariates
   covar_range = select(data, one_of(covariates)) %>%
     gather(covar, value) %>%
+    mutate(covar = as.factor(as.character(covar))) %>%
     group_by(covar) %>%
     summarise(mean_value = mean(value, na.rm = T),
               median_value = median(value, na.rm = T),
@@ -91,7 +93,7 @@ pdpPlot = function(data = NULL,
       scale_color_brewer(palette = 'Set1') +
       theme_bw() +
       theme(legend.position = 'bottom') +
-      labs(y = 'Prediction (fish / m)',
+      labs(y = ylab,
            x = 'Covariate Value',
            title = 'Partial Dependence Plots',
            color = 'Watershed')

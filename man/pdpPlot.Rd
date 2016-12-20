@@ -5,7 +5,8 @@
 \title{Partial Dependence Plots}
 \usage{
 pdpPlot(data = NULL, mod = NULL, covariates = NULL, plot_covars = NULL,
-  covar_dict = NULL, quantiles = c(0.9), n_pts = 200, same_y_scale = F)
+  covar_dict = NULL, quantiles = c(0.9), n_pts = 200, same_y_scale = F,
+  ylab = "Prediction (fish / m)")
 }
 \arguments{
 \item{data}{\code{data.frame} that was used to fit the \code{mod}}

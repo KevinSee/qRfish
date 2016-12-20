@@ -23,10 +23,10 @@ relImpPlot = function(mod,
   relImp_var = match.arg(relImp_var)
 
   imp_df = relImportance(mod) %>%
-    mutate(Metric = factor(Metric, levels = Metric[order(IncNodePurity)])) %>%
     left_join(covar_dict %>%
-                select(ShortName, Name),
-              by = c('Metric' = 'ShortName'))
+                select(Metric = ShortName, Name)) %>%
+    mutate(Metric = factor(Metric, levels = Metric[order(IncNodePurity)]),
+           Name = factor(Name, levels = Name[order(IncNodePurity)]))
   names(imp_df)[match(relImp_var, names(imp_df))] = 'plot_y'
 
   if(sum(is.na(imp_df$Name)) > 0) {
