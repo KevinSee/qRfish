@@ -5,8 +5,8 @@
 \title{Partial Dependence Plots}
 \usage{
 pdpPlot(data = NULL, mod = NULL, covariates = NULL, plot_covars = NULL,
-  covar_dict = NULL, quantiles = c(0.9), n_pts = 200, same_y_scale = F,
-  ylab = "Prediction (fish / m)")
+  covar_dict = NULL, quantiles = c(0.9), n_pts = 200,
+  ylab = "Prediction (fish / m)", same_y_scale = F, trans_y_scale = NULL)
 }
 \arguments{
 \item{data}{\code{data.frame} that was used to fit the \code{mod}}
@@ -23,9 +23,9 @@ pdpPlot(data = NULL, mod = NULL, covariates = NULL, plot_covars = NULL,
 
 \item{n_pts}{how many points to make predictions for}
 
-\item{same_y_scale}{should plots of different covariates be on the same y-axis scale? Default is \code{FALSE}.}
-
 \item{ylab}{what should the y-axis label be?}
+
+\item{same_y_scale}{should plots of different covariates be on the same y-axis scale? Default is \code{FALSE}.}
 
 \item{trans_y_scale}{should y scale be transformed? Default is \code{NULL}.}
 }

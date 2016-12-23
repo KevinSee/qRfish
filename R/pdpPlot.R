@@ -28,8 +28,9 @@ pdpPlot = function(data = NULL,
                    covar_dict = NULL,
                    quantiles = c(0.9),
                    n_pts = 200,
+                   ylab = 'Prediction (fish / m)',
                    same_y_scale = F,
-                   ylab = 'Prediction (fish / m)') {
+                   trans_y_scale = NULL) {
 
   if(is.null(plot_covars)) plot_covars = covariates
 
