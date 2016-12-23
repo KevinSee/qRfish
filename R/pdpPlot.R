@@ -74,6 +74,9 @@ pdpPlot = function(data = NULL,
     gather(quantile, pred, -covar_label, -covar, -value) %>%
     tbl_df()
 
+  if(!is.null(trans_y_scale)) pdp_df %<>%
+    mutate_at(vars(pred), funs(trans_y_scale))
+
   rug_df = select(data, WatershedName, one_of(hab_mets)) %>%
     gather(covar, value, -WatershedName) %>%
     filter(covar %in% plot_covars) %>%
@@ -92,7 +95,9 @@ pdpPlot = function(data = NULL,
       geom_smooth(method = 'loess',
                   se = F,
                   color = 'black') +
-      geom_rug(data = rug_df, aes(x = value, y=NULL, color = WatershedName)) +
+      geom_rug(data = rug_df, aes(x = value,
+                                  y = NULL,
+                                  color = WatershedName)) +
       scale_color_brewer(palette = 'Set1') +
       theme_bw() +
       theme(legend.position = 'bottom') +
@@ -129,9 +134,6 @@ pdpPlot = function(data = NULL,
 
   if(same_y_scale) pdp_p = pdp_p +
     facet_wrap(~ covar_label, scales = 'free_x')
-
-  if(!is.null(trans_y_scale)) pdp_p = pdp_p +
-    scale_y_continuous(trans = trans_y_scale)
 
   return(pdp_p)
 }
