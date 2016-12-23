@@ -24,6 +24,10 @@ pdpPlot(data = NULL, mod = NULL, covariates = NULL, plot_covars = NULL,
 \item{n_pts}{how many points to make predictions for}
 
 \item{same_y_scale}{should plots of different covariates be on the same y-axis scale? Default is \code{FALSE}.}
+
+\item{ylab}{what should the y-axis label be?}
+
+\item{trans_y_scale}{should y scale be transformed? Default is \code{NULL}.}
 }
 \description{
 plot the marginal effect of each covariate on the response at the selected quantiles

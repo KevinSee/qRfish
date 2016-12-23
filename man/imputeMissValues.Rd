@@ -5,7 +5,7 @@
 \title{Impute missing covariate values}
 \usage{
 imputeMissValues(data = NULL, covariates = NULL,
-  imputation_metrics = NULL, max_miss = 3, response = NA)
+  imputation_metrics = NULL, max_miss = 3, response = NA, ntree = 1000)
 }
 \arguments{
 \item{data}{data.frame containing the response metric, the covariates and any other imputation metrics}
