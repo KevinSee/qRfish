@@ -19,7 +19,8 @@ imputeMissValues = function(data = NULL,
                             covariates = NULL,
                             imputation_metrics = NULL,
                             max_miss = 3,
-                            response = NA) {
+                            response = NA,
+                            ntree = 1000) {
   if(is.null(data)) {
     cat('data must be supplied')
     return(NULL)
@@ -43,7 +44,8 @@ imputeMissValues = function(data = NULL,
     select(one_of(covariates), one_of(imputation_metrics)) %>%
     as.data.frame() %>%
     missForest(variablewise = T,
-               verbose = F)
+               verbose = F,
+               ntree = ntree)
 
   # put together the new data set with no missing values
   if(!is.na(response)) {
