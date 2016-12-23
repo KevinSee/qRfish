@@ -9,7 +9,9 @@
 #' @param covar_dict \code{data.frame} containing columns called ShortName and Name. ShortName corresponds to the covariates that went into the \code{mod}, while Name is a longer version for plotting purposes.
 #' @param quantiles which quantiles should be included on the partial dependence plots
 #' @param n_pts how many points to make predictions for
+#' @param ylab what should the y-axis label be?
 #' @param same_y_scale should plots of different covariates be on the same y-axis scale? Default is \code{FALSE}.
+#' @param trans_y_scale should y scale be transformed? Default is \code{NULL}.
 #'
 #' @author Kevin See
 #'
@@ -115,7 +117,7 @@ pdpPlot = function(data = NULL,
       scale_color_brewer(palette = 'Set1') +
       theme_bw() +
       theme(legend.position = 'bottom') +
-      labs(y = 'Prediction (fish / m)',
+      labs(y = ylab,
            x = 'Covariate Value',
            title = 'Partial Dependence Plots',
            color = 'Quantile')
@@ -126,6 +128,9 @@ pdpPlot = function(data = NULL,
 
   if(same_y_scale) pdp_p = pdp_p +
     facet_wrap(~ covar_label, scales = 'free_x')
+
+  if(!is.null(trans_y_scale)) pdp_p = pdp_p +
+    scale_y_continuous(trans = trans_y_scale)
 
   return(pdp_p)
 }
